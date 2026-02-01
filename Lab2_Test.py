@@ -1,6 +1,14 @@
-from Lab2 import removeNA
+from Lab2 import Second_Lab
 
 import pandas as pd
+
+data = pd.read_csv('data.csv')
+a = data.info()
+b = data.head()
+c = data.index
+d = data.columns
+
+print(a,b,c,d)
 
 
 df = pd.DataFrame({
@@ -10,4 +18,9 @@ df = pd.DataFrame({
 print(df)
 
 print("Removed NA")
-print(removeNA(df))
+print(Second_Lab.removeNA(df))
+
+print("Analyze Potential Outliers")
+print()
+thresholds = {"a": 15, "b": 25}
+print(Second_Lab.analyzePotentialOutliers(Second_Lab.removeNA(df), thresholds))

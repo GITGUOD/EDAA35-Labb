@@ -1,13 +1,5 @@
 import pandas as pd
-data = pd.read_csv('data.csv')
-a = data.info()
-b = data.head()
-c = data.index
-d = data.columns
-
-print(a,b,c,d)
-
-class Lab2:
+class Second_Lab:
     # Exercise: filter not completed cases:
 
     def removeNA(data):
@@ -16,14 +8,30 @@ class Lab2:
     
     def analyzePotentialOutliers(data, threshold):
 
-        for col in data.columns:
-            rawData = data[col]
-            limit = threshold[threshold]
+        results_list = []
 
-            if(rawData > limit):
-                countingOutliers = countingOutliers + 1
-                
-        return data
+        for col, limit in threshold.items():
+
+            rawData = data[col]
+
+            outliers = rawData[rawData > limit]
+
+            number_Of_Outliers = len(outliers)
+
+            mean_Value_Of_Non_Outliers = rawData[rawData <= limit].mean()
+
+            results = {
+                "variable": col,
+                "number_of_outliers": number_Of_Outliers,
+                "mean_value_of_non_outliers": mean_Value_Of_Non_Outliers
+            }
+
+            results_list.append(results)
+            df_results = pd.DataFrame(results_list)
+
+            df_results = df_results.set_index("variable")
+
+        return df_results
 
 
 
