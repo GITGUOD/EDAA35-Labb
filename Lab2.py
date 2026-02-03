@@ -59,3 +59,4 @@ class Second_Lab:
 
         plt.show()
 
+        return data.groupby("user")["datetime"].max().sort_values(ascending=True)
